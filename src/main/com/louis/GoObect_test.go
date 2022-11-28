@@ -17,6 +17,11 @@ type Book struct {
 	auth string
 }
 
+type treeNode struct {
+	value       int
+	left, right *treeNode
+}
+
 // 这种情况，传递的是值对象，如果在这个方法中修改了book对象，外部对象是不会受到影响的
 func changeBook(book Book) {
 	book.name = "java"
@@ -42,4 +47,21 @@ func TestV2(t *testing.T) {
 	fmt.Println(book1.name) //Golang
 	changeBook2(&book1)
 	fmt.Println(book1.name) //Java
+}
+
+func TestTreeNode(t *testing.T) {
+	var root treeNode
+	root = treeNode{value: 3}
+	root.left = &treeNode{}
+	root.right = &treeNode{5, nil, nil}
+	root.right.left = new(treeNode)
+	nodes := []treeNode{
+		{3, nil, nil},
+		{},
+		{6, nil, &root},
+	} //这里[]treeNode前面不用加“&”，因为切片是引用类型
+	fmt.Println(nodes) //[{3 <nil> <nil>} {0 <nil> <nil>} {6 <nil> 0xc000004078}]
+
+	fmt.Printf("root: %v\n", root)
+
 }
