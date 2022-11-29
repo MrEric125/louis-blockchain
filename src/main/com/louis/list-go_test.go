@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"regexp"
 	"strings"
 	"testing"
@@ -62,6 +63,8 @@ func TestConvert(t *testing.T) {
 	test := "i,love,go"
 
 	str2 := test
+
+	log.Print()
 
 	keywordSlice := strings.Split(test, ",")
 
