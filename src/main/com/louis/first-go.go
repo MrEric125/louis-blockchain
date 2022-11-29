@@ -15,6 +15,7 @@ func main() {
 		addr  string
 		phone int
 	)
+
 	addr = "addr"
 	phone = 123
 

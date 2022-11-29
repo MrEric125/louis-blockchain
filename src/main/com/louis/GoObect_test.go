@@ -62,6 +62,4 @@ func TestTreeNode(t *testing.T) {
 	} //这里[]treeNode前面不用加“&”，因为切片是引用类型
 	fmt.Println(nodes) //[{3 <nil> <nil>} {0 <nil> <nil>} {6 <nil> 0xc000004078}]
 
-	fmt.Printf("root: %v\n", root)
-
 }
