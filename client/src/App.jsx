@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
-
+import { Navbar,Welcome,Loader,Services,Transactions } from './components'
 const App=()=> {
-
-
   return (
-    <div className="App">
-      <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+    <div className="min-h-screen">
+      <div className='gradient-bg-welcome'>
+        <Navbar>
+          
+        </Navbar>
+        <Welcome></Welcome>
+
+      </div>
+      <Services></Services>
+      <Transactions></Transactions>
+
     </div>
   )
 }
