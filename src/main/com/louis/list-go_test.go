@@ -225,3 +225,31 @@ func (person Profile) FmtProfile() {
 
 	fmt.Printf("person.name: %v\n", person.name)
 }
+
+func TestMap(t *testing.T) {
+	var map1 map[string]int
+	map1 = map[string]int{"one": 1}
+
+	mapCreated := make(map[string]int)
+
+	mapCreated["one"] = 1
+	mapCreated["two"] = 2
+
+	fmt.Printf("map1: %v\n", map1["two"])
+
+	fmt.Printf("mapCreated: %v\n", mapCreated)
+
+	keys := make([]string, 0, len(mapCreated))
+	for k := range mapCreated {
+		keys = append(keys, k)
+	}
+	fmt.Printf("keys: %v\n", keys)
+
+	fm := map[int]func() int{
+		1: func() int { return 10 },
+		2: func() int { return 20 },
+		3: func() int { return 30 },
+	}
+	fmt.Printf("fm: %v\n", fm)
+
+}
