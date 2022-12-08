@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"flag"
 	"fmt"
 	"io"
 	"os"
@@ -19,33 +18,84 @@ var inputReader *bufio.Reader
 var err error
 
 func main() {
-	// fmt.Println("please enter you full name:")
-	// fmt.Scanln(&firstName)
-	// fmt.Printf("Hi %s %s!\n  ", firstName, lastName)
-	// fmt.Scanf(input, format, &f, &i, &s)
-	// fmt.Println("from the string we read:", f, i, s)
 
-	// inputReader = bufio.NewReader(os.Stdin)
-	// fmt.Println("please enter some input:")
-	// input, err = inputReader.ReadString('\n')
-	// if err == nil {
-	// 	fmt.Printf("the input was :%s\n\":", input)
-	// }
-	fmt.Print("place input")
-	flag.Parse()
-	if flag.NArg() == 0 {
-		cat(bufio.NewReader(os.Stdin))
+	inputFunc()
+
+}
+
+/*
+ */
+func inputFunc() {
+	/**
+	os.Open 读取文件
+		返回的是File 的引用类型
+	*/
+	inputFile, inputError := os.Open("/Users/louis/workspace/louis/louis-blockchain/src/main/com/input.dat")
+	if inputError != nil {
+		fmt.Printf("an error ecc %s", inputError)
+		return
+
 	}
-	for i := 0; i < flag.NArg(); i++ {
-		f, err := os.Open(flag.Arg(i))
-		if err != nil {
-
+	defer inputFile.Close()
+	/*
+	 bufio.NewReader
+	 param   io.Reader 接口数据，File 实现了io.Reader 接口,go 中实现接口的方式 不是很方便找到哪个类实现了哪个接口的哪个方法
+	 return  bufio.Reader struct
+	*/
+	inputReader := bufio.NewReader(inputFile)
+	for {
+		inputString, readError := inputReader.ReadString('\n')
+		fmt.Printf("the input was :%s \n", inputString)
+		if readError == io.EOF {
+			return
 		}
-		cat(bufio.NewReader(f))
-		f.Close()
 
 	}
+}
 
+func input2() {
+
+	inputReader := bufio.NewReader(os.Stdin)
+	fmt.Println("Please enter your name:")
+	input, err := inputReader.ReadString('\n')
+
+	if err != nil {
+		fmt.Println("There were errors reading, exiting program.")
+		return
+	}
+
+	fmt.Printf("Your name is %s", input)
+	// For Unix: test with delimiter "\n", for Windows: test with "\r\n"
+	switch input {
+	case "Philip\r\n":
+		fmt.Println("Welcome Philip!")
+	case "Chris\r\n":
+		fmt.Println("Welcome Chris!")
+	case "Ivo\r\n":
+		fmt.Println("Welcome Ivo!")
+	default:
+		fmt.Printf("You are not welcome here! Goodbye!")
+	}
+
+	// version 2:
+	switch input {
+	case "Philip\r\n":
+		fallthrough
+	case "Ivo\r\n":
+		fallthrough
+	case "Chris\r\n":
+		fmt.Printf("Welcome %s\n", input)
+	default:
+		fmt.Printf("You are not welcome here! Goodbye!\n")
+	}
+
+	// version 3:
+	switch input {
+	case "Philip\r\n", "Ivo\r\n":
+		fmt.Printf("Welcome %s\n", input)
+	default:
+		fmt.Printf("You are not welcome here! Goodbye!\n")
+	}
 }
 
 func cat(r *bufio.Reader) {

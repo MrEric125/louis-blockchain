@@ -12,4 +12,6 @@
    9. 高级
       1.  集合框架，io流，并发编程，网络编程，GUI,反射，编译原理，内存管理，元编程详解
 
-4.  
+## 配置vsc 支持输入的debug,
+如果不配置，输入会不生效 报错 `Unable to process evaluate: debuggee is running` 
+详细配置： https://github.com/golang/vscode-go/blob/master/docs/debugging.md#configuration
