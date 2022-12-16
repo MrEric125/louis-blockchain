@@ -4,7 +4,11 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
+	"net/http"
+	"net/rpc"
 	"os"
+	"sync"
 )
 
 var (
@@ -16,10 +20,17 @@ var (
 )
 var inputReader *bufio.Reader
 var err error
+var keyChar = []byte("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 func main() {
 
-	inputFunc()
+	// inputFunc()
+
+	http.HandleFunc("/", Redirect)
+
+	http.HandleFunc("/add", Add)
+
+	http.ListenAndServe(":8080", nil)
 
 }
 
@@ -36,7 +47,10 @@ func inputFunc() {
 		return
 
 	}
+	// 定义 执行左右语句，
 	defer inputFile.Close()
+
+	defer fmt.Print("this is the last")
 	/*
 	 bufio.NewReader
 	 param   io.Reader 接口数据，File 实现了io.Reader 接口,go 中实现接口的方式 不是很方便找到哪个类实现了哪个接口的哪个方法
@@ -96,6 +110,149 @@ func input2() {
 	default:
 		fmt.Printf("You are not welcome here! Goodbye!\n")
 	}
+}
+
+func input3() {
+
+}
+
+/*
+sync.RWMutex
+sync.
+*/
+type URLStore struct {
+	urls map[string]string // map from short to long
+	mu   sync.RWMutex
+}
+
+/*
+ */
+func (s *URLStore) Get(key string) string {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	url := s.urls[key]
+	return url
+}
+
+func (s *URLStore) Set(key, url string) bool {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	_, present := s.urls[key]
+
+	if present {
+		return false
+	}
+	s.urls[key] = url
+	return true
+}
+
+func (s *URLStore) Count() int {
+	s.mu.RLock()
+	// 解锁RLock
+	defer s.mu.RUnlock()
+
+	return len(s.urls)
+
+}
+func NewUrlStore(fileName string) *URLStore {
+
+	s := &URLStore{urls: make(map[string]string)}
+	if fileName != "" {
+		// s.save = make(chan record, saveQueueLength)
+		// if err != s.load(fileName); err != nil {
+
+		// }
+		// go s.saveLoop(fileName)
+	}
+	return s
+
+	// & 是取地址操作
+	// return &URLStore{urls: make(map[string]string)}
+
+}
+func (s *URLStore) Put(url string) string {
+	for {
+		key := genKey(s.Count())
+		if s.Set(key, url) {
+			return key
+		}
+	}
+	// shouldn’t get here
+	return ""
+}
+func genKey(n int) string {
+	if n == 0 {
+		return string(keyChar[0])
+	}
+	l := len(keyChar)
+	s := make([]byte, 20) // FIXME: will overflow. eventually.
+	i := len(s)
+	for n > 0 && i >= 0 {
+		i--
+		j := n % l
+		n = (n - j) / l
+		s[i] = keyChar[j]
+	}
+	return string(s[i:])
+}
+
+func init() {
+	var store = NewUrlStore()
+
+	if store.Set("a", "http://google.com") {
+
+	}
+
+}
+
+var store = NewUrlStore()
+
+func Add(w http.ResponseWriter, r *http.Request) {
+	url := r.FormValue("url")
+	if url == "" {
+		fmt.Fprint(w, AddForm)
+		return
+	}
+	key := store.Put(url)
+	fmt.Fprintf(w, "http://localhost:8080/%s", key)
+}
+
+func Redirect(w http.ResponseWriter, r *http.Request) {
+	key := r.URL.Path[1:]
+	url := store.Get(key)
+	if url == "" {
+		http.NotFound(w, r)
+		return
+	}
+	http.Redirect(w, r, url, http.StatusFound)
+}
+
+const AddForm = `
+<form method="POST" action="/add">
+URL: <input type="text" name="url">
+<input type="submit" value="Add">
+</form>
+`
+
+type ProxyStore struct {
+	client *rpc.Client
+	urls   *URLStore
+}
+
+func (s *ProxyStore) get(key, url *string) error {
+	return s.client.Call("store.Get", key, url)
+}
+func (s *ProxyStore) Put(url, key *string) error {
+	return s.client.Call("Store.Put", url, key)
+}
+
+func NewProxyStore(addr string) *ProxyStore {
+	client, err := rpc.DialHTTP("tcp", addr)
+	if err != nil {
+		log.Println("Error constructing ProxyStore:", err)
+	}
+	return &ProxyStore{client: client, urls: NewUrlStore()}
+
 }
 
 func cat(r *bufio.Reader) {
