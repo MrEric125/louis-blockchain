@@ -15,3 +15,5 @@
 ## 配置vsc 支持输入的debug,
 如果不配置，输入会不生效 报错 `Unable to process evaluate: debuggee is running` 
 详细配置： https://github.com/golang/vscode-go/blob/master/docs/debugging.md#configuration
+
+go 语言学习的官方指南
