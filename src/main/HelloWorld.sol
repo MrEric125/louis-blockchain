@@ -15,7 +15,7 @@ contract HelloWorld {
     uint256 storeData;
 
     /// 这种注释会比较有意义，会生成文档 netspect 注释
-    /// @param _x
+    /// @param _x desc
     function set(uint256 _x)  public{
         storeData=_x;
     }
@@ -23,7 +23,7 @@ contract HelloWorld {
 
     // this 本身代表当前合约
     // address 当前合约地址
-    function fn1() external view returns(address){
+    function fn1(uint256 a) external view returns(address){
         return address(this); // 当前合约地址
     }
 

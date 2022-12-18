@@ -197,7 +197,7 @@ func genKey(n int) string {
 }
 
 func init() {
-	var store = NewUrlStore()
+	var store = NewUrlStore("")
 
 	if store.Set("a", "http://google.com") {
 
@@ -205,7 +205,7 @@ func init() {
 
 }
 
-var store = NewUrlStore()
+var store = NewUrlStore("")
 
 func Add(w http.ResponseWriter, r *http.Request) {
 	url := r.FormValue("url")
@@ -251,7 +251,7 @@ func NewProxyStore(addr string) *ProxyStore {
 	if err != nil {
 		log.Println("Error constructing ProxyStore:", err)
 	}
-	return &ProxyStore{client: client, urls: NewUrlStore()}
+	return &ProxyStore{client: client, urls: NewUrlStore("")}
 
 }
 
