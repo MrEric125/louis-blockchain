@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -68,7 +69,29 @@ func setupRouter() *gin.Engine {
 }
 
 func main() {
-	r := setupRouter()
-	r.Run(":8080")
+	router := setupRouter()
+	// r.Run(":8080")
+
+	// router := gin.Default()
+
+	router.MaxMultipartMemory = 8 << 20
+	router.Any("/test", startTest)
+	router.Run(":8080")
+
+}
+
+type Person struct {
+	Name    string
+	Address string
+}
+
+func startTest(c *gin.Context) {
+	var person Person
+	if c.ShouldBindQuery(&person) == nil {
+		log.Print(person.Name)
+		log.Print(person.Address)
+
+	}
+	c.String(http.StatusOK, "success")
 
 }
