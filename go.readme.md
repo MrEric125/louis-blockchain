@@ -17,3 +17,4 @@
 详细配置： https://github.com/golang/vscode-go/blob/master/docs/debugging.md#configuration
 
 go 语言学习的官方指南
+以前叫这个名字 https://golang.org 现在改名为 https://go.dev/
