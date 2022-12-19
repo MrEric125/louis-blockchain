@@ -13,7 +13,6 @@
             "program": "${fileDirname}",
             "mode": "debug",
             "console": "integratedTerminal",
-            "asRoot": true,
             "env": {
                 "GOPATH": "/Users/louis/go",   //调整为实际设置目录
                 "GOROOT":"/usr/local/go",  //调整为实际设置目录

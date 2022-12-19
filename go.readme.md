@@ -18,3 +18,10 @@
 
 go 语言学习的官方指南
 以前叫这个名字 https://golang.org 现在改名为 https://go.dev/
+
+参考学习文档：
+
+https://golang.iswbm.com/c04/c04_04.html
+
+https://github.com/jiujuan/go-collection
+

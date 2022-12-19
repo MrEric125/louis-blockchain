@@ -77,3 +77,39 @@ func TestChannel(t *testing.T) {
 	time.Sleep(time.Second)
 
 }
+
+// 简单的流水线模式
+func producer(nums ...int) <-chan int {
+	out := make(chan int)
+	go func() {
+		defer close(out)
+		for _, n := range nums {
+			out <- n
+		}
+	}()
+	return out
+}
+
+func square(inCh <-chan int) <-chan int {
+	out := make(chan int)
+	go func() {
+		defer close(out)
+		for n := range inCh {
+			out <- n * n
+		}
+	}()
+
+	return out
+
+}
+func TestPipeline(t *testing.T) {
+	in := producer(1, 2, 3, 4)
+	ch := square(in)
+
+	// consumer
+	for ret := range ch {
+		fmt.Printf("%3d", ret)
+	}
+	fmt.Println()
+
+}
