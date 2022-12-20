@@ -1,5 +1,8 @@
 package main
 
+import "database/sql"
+import _ "go-sql-driver/mysql"
+
 type AuthController struct {
 }
 
@@ -17,4 +20,9 @@ func (*AuthController) GetUserValue(c *gin.Context) {
 
 func AddUser() {
 
+}
+
+func connectSql() {
+	db, err := sql.Open("mysql", "username:password@(127.0.0.1:3306)/dbname?parseTime=true")
+	err := db.Ping
 }
