@@ -1,10 +1,12 @@
 package main
 
 import (
+	"com.louis/go_project/com/louis/controller"
 	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var db = make(map[string]string)
@@ -73,6 +75,11 @@ func main() {
 	// r.Run(":8080")
 
 	// router := gin.Default()
+
+	auth :=controller.AuthController{}
+
+	auth.ConnectSql()
+
 
 	router.MaxMultipartMemory = 8 << 20
 	router.Any("/test", startTest)

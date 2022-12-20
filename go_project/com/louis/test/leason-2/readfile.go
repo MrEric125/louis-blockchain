@@ -12,7 +12,7 @@ import (
 // 读取文件
 
 func main() {
-	file, err := os.Open("./input.dat")
+	file, err := os.Open("/Users/louis/workspace/louis/louis-blockchain/go_project/com/louis/test/input.dat")
 
 	if err != nil {
 		print("open file error:", err.Error())
