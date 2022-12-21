@@ -1,8 +1,8 @@
 package main
 
 import (
-	"com.louis/go_project/com/louis/controller"
 	"log"
+	"louis/com/louis/controller"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

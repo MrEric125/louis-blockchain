@@ -139,6 +139,37 @@ func CoroutineChannel() {
 
 }
 
+func ReadFile()  {
+	content,err:=os.ReadFile("a.txt")
+	if err != nil{
+		panic(err)
+	}
+	fmt.Println(string(content))
+
+}
+func openFile()  {
+	file,err :=os.Open("a.txt")
+	if err != nil{
+		panic(err)
+	}
+	r:=bufio.NewReader(file)
+	buf:=make([]byte,1024)
+	for  {
+		n,err:=r.Read(buf)
+		if err !=nil && err!=io.EOF {
+			panic(err)
+		}
+		if n== 0 {
+			break
+		}
+		fmt.Println(string(buf[:n]))
+
+
+	}
+
+
+}
+
 type Speed float64
 
 const (
