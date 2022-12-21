@@ -1,7 +1,0 @@
-
-type User struct {
-	name       string
-	password   string
-	createTime time.time
-	updateTime time.time
-}

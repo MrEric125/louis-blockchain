@@ -25,3 +25,9 @@ https://golang.iswbm.com/c04/c04_04.html
 
 https://github.com/jiujuan/go-collection
 
+一个go 的web 项目
+
+https://github.com/go-admin-team/go-admin
+
+https://github.com/flipped-aurora/gin-vue-admin
+
