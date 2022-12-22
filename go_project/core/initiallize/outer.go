@@ -1,0 +1,5 @@
+package initiallize
+
+func OuterInit() {
+
+}
