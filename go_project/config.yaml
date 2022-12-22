@@ -2,3 +2,9 @@
 system:
   env: public
   addr: 8888
+
+jwt:
+  signing-key: abc
+  expires-time: 60s
+  buffer-time: 20
+  issuer: louis

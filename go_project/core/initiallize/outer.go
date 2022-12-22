@@ -1,6 +1,8 @@
 package initiallize
 
 import (
+	"encoding/json"
+	"fmt"
 	"louis/cache"
 	"louis/global"
 	"louis/utils"
@@ -20,5 +22,7 @@ func OuterInit() {
 	global.BlackCache = cache.NewCache(
 		cache.SetDefaultExpire(dr),
 	)
+	jsonU, _ := json.Marshal(&global.LOUIS_CONFIG)
+	fmt.Println(string(jsonU))
 
 }

@@ -39,5 +39,5 @@ type JWT struct {
 type Server struct {
 	System   System   `mapstructure:"system" json:"system" yaml:"system"`
 	AutoCode AutoCode `mapstructure:"autoCode" json:"autoCode" yaml:"autoCode"`
-	JWT      JWT
+	JWT      JWT      `mapstructure:"jwt" json:"jwt" yaml:"jwt"`
 }
