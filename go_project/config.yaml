@@ -2,6 +2,7 @@
 system:
   env: public
   addr: 8888
+  dbType: mysql
 
 jwt:
   signing-key: abc
