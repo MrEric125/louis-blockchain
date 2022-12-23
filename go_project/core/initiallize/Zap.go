@@ -8,6 +8,7 @@ import (
 	"louis/global"
 	"louis/utils"
 	"os"
+	"time"
 )
 
 var ZapObj = new(_zap)
@@ -91,6 +92,11 @@ func (z *_zap) GetEncoder() zapcore.Encoder {
 	}
 	return zapcore.NewConsoleEncoder(z.GetEncoderConfig())
 }
+
+func (z *_zap) CustomTimeEncoder(t time.Time, encoder zapcore.PrimitiveArrayEncoder) {
+	encoder.AppendString(global.LOUIS_CONFIG.Zap.Prefix + t.Format("2006/01/02 - 15:04:05.000"))
+}
+
 func (z *_zap) GetEncoderConfig() zapcore.EncoderConfig {
 	return zapcore.EncoderConfig{
 		MessageKey:     "message",

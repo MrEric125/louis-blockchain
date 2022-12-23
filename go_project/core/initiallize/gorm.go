@@ -10,10 +10,6 @@ import (
 	"time"
 )
 
-type DBBASE interface {
-	GetLogMode() string
-}
-
 var Gorm = new(_gorm)
 
 type _gorm struct{}

@@ -2,11 +2,13 @@ package initiallize
 
 import (
 	"encoding/json"
-	"fmt"
 	"louis/cache"
 	"louis/global"
 	"louis/utils"
 )
+
+type Outer struct {
+}
 
 func OuterInit() {
 
@@ -23,6 +25,9 @@ func OuterInit() {
 		cache.SetDefaultExpire(dr),
 	)
 	jsonU, _ := json.Marshal(&global.LOUIS_CONFIG)
-	fmt.Println(string(jsonU))
+
+	global.LOUIS_LOG = Zap()
+	global.LOUIS_LOG.Info(string(jsonU))
+	global.LOUIS_LOG.Info("==========log===============")
 
 }

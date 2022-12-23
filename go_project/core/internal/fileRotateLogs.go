@@ -9,13 +9,12 @@ import (
 	"time"
 )
 
-var FileRotatelogs = new(fileRotatelogs)
+var FileRotatelogs = new(fileRotateLogs)
 
-type fileRotatelogs struct{}
+type fileRotateLogs struct{}
 
 // GetWriteSyncer 获取 zapcore.WriteSyncer
-// Author [SliverHorn](https://github.com/SliverHorn)
-func (r *fileRotatelogs) GetWriteSyncer(level string) (zapcore.WriteSyncer, error) {
+func (r *fileRotateLogs) GetWriteSyncer(level string) (zapcore.WriteSyncer, error) {
 	fileWriter, err := rotatelogs.New(
 		path.Join(global.LOUIS_CONFIG.Zap.Director, "%Y-%m-%d", level+".log"),
 		rotatelogs.WithClock(rotatelogs.Local),

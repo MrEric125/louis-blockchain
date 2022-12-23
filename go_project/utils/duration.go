@@ -8,6 +8,11 @@ import (
 	"time"
 )
 
+type Duration struct {
+}
+
+var duration = new(Duration)
+
 func ParseDuration(d string) (time.Duration, error) {
 	d = strings.TrimSpace(d)
 	dr, err := time.ParseDuration(d)
