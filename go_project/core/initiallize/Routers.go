@@ -11,7 +11,7 @@ import (
 type Routers struct {
 }
 
-func (r *Routers) DoInitRouters() *gin.Engine {
+func DoInitRouters() *gin.Engine {
 	Router := gin.Default()
 
 	//Router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
