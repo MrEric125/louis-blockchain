@@ -66,6 +66,8 @@ func Viper(path ...string) *viper.Viper {
 
 	// root 适配性 根据root位置去找到对应迁移位置,保证root路径有效
 	global.LOUIS_CONFIG.AutoCode.Root, _ = filepath.Abs("..")
+	global.LOUIS_VP = v
+
 	return v
 
 }

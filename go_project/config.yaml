@@ -8,6 +8,11 @@ jwt:
   expires-time: 60s
   buffer-time: 20
   issuer: louis
+zap:
+  level: debug
+  director: .out
+  log-in-console: true
+  show-line: true
 mysql:
   db-name: louis_coub
   path: localhost

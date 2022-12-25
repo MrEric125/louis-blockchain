@@ -14,12 +14,7 @@ import (
 
 var ZapObj = new(_zap)
 
-var logger *zap.Logger
-
-func init() {
-	ZapInit()
-
-}
+var logger *zap.SugaredLogger
 
 type _zap struct{}
 
@@ -32,11 +27,15 @@ func ZapInit() {
 		_ = os.Mkdir(global.LOUIS_CONFIG.Zap.Director, os.ModePerm)
 	}
 	cores := ZapObj.getZapCores()
-	logger = zap.New(zapcore.NewTee(cores...), zap.AddCaller())
+	log := zap.New(zapcore.NewTee(cores...), zap.AddCaller())
+
+	defer log.Sync()
 
 	if global.LOUIS_CONFIG.Zap.ShowLine {
-		logger = logger.WithOptions(zap.AddCaller())
+		log = log.WithOptions(zap.AddCaller())
 	}
+	logger = log.Sugar()
+
 }
 func (z *_zap) getEncoderCore(l zapcore.Level, level zap.LevelEnablerFunc) zapcore.Core {
 	writer, err := z.getWriteSyncer(l.String()) // 使用file-rotatelogs进行日志分割
@@ -123,8 +122,10 @@ func (z *_zap) getEncoder() zapcore.Encoder {
 		encoderConfig.EncodeTime = z.CustomTimeEncoder
 		encoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
 		encoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
-
 	}
+	//consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
+	//allCore = append(allCore, zapcore.NewCore(consoleEncoder, zapcore.Lock(os.Stdout), zapcore.DebugLevel))
+
 	return zapcore.NewConsoleEncoder(encoderConfig)
 
 }

@@ -24,7 +24,7 @@ func (r *Routers) DoInitRouters() *gin.Engine {
 			context.JSON(http.StatusOK, "Ok")
 		})
 	}
-	r.initServer(Router)
+	//r.initServer(Router)
 	return Router
 
 }
