@@ -3,9 +3,17 @@ system:
   env: public
   addr: 8888
   dbType: mysql
-
 jwt:
   signing-key: abc
   expires-time: 60s
   buffer-time: 20
   issuer: louis
+mysql:
+  db-name: louis_coub
+  path: localhost
+  port: 3306
+  config:
+  username: root
+  password: "!QAZ2wsx"
+  prefix:
+  engine: InnoDB

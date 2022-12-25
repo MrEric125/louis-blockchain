@@ -13,6 +13,10 @@ import (
 	"github.com/spf13/viper"
 )
 
+/*
+*
+读取yaml 文件工具类初始化
+*/
 func Viper(path ...string) *viper.Viper {
 
 	var config string

@@ -1,6 +1,7 @@
 package initiallize
 
 import (
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
@@ -13,6 +14,14 @@ import (
 var Gorm = new(_gorm)
 
 type _gorm struct{}
+
+func SqlInit() {
+	switch global.LOUIS_CONFIG.System.DbType {
+	case "mysql":
+		GormMysql()
+	}
+
+}
 
 func (g *_gorm) Config(prefix string, singular bool) *gorm.Config {
 	config := &gorm.Config{
@@ -48,4 +57,30 @@ func (g *_gorm) Config(prefix string, singular bool) *gorm.Config {
 		config.Logger = _default.LogMode(logger.Info)
 	}
 	return config
+}
+
+func GormMysql() *gorm.DB {
+	m := global.LOUIS_CONFIG.Mysql
+	if m.Dbname == "" {
+		global.LOGGER.Error("数据库连接未找到")
+		return nil
+	}
+
+	mysqlConfig := mysql.Config{
+		DSN:                       m.Dsn(),
+		DefaultStringSize:         191,
+		SkipInitializeWithVersion: false,
+	}
+	//db, err := gorm.Open(mysql.New(mysqlConfig), Gorm.Config(m.Prefix, m.Singular))
+	db, err := gorm.Open(mysql.New(mysqlConfig))
+	if err != nil {
+		panic(err)
+		return nil
+	}
+	db.InstanceSet("gorm:table_options", "ENGINE="+m.Engine)
+	sqlDB, _ := db.DB()
+	sqlDB.SetMaxIdleConns(m.MaxIdleConns)
+	sqlDB.SetMaxOpenConns(m.MaxOpenConns)
+	return db
+
 }
