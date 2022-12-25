@@ -26,7 +26,7 @@ func OuterInit() {
 	)
 	jsonU, _ := json.Marshal(&global.LOUIS_CONFIG)
 
-	global.LOGGER.Info(string(jsonU))
-	global.LOGGER.Info("==========log===============")
+	logger.Info(string(jsonU))
+	logger.Info("==========log===============")
 
 }

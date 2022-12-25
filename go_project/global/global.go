@@ -7,7 +7,6 @@ import (
 
 	"github.com/go-redis/redis/v8"
 	"github.com/spf13/viper"
-	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -22,7 +21,6 @@ var (
 	LOUIS_REDIS         *redis.Client
 	LOUIS_CONFIG        config.Server
 	LOUIS_VP            *viper.Viper
-	LOGGER              *zap.Logger
 	DEFAULT_CONFIG_TYPE string = "yaml"
 	BlackCache          cache.BlackCache
 	lock                sync.RWMutex

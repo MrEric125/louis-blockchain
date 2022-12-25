@@ -14,6 +14,13 @@ import (
 
 var ZapObj = new(_zap)
 
+var logger *zap.Logger
+
+func init() {
+	ZapInit()
+
+}
+
 type _zap struct{}
 
 func ZapInit() {
@@ -25,12 +32,11 @@ func ZapInit() {
 		_ = os.Mkdir(global.LOUIS_CONFIG.Zap.Director, os.ModePerm)
 	}
 	cores := ZapObj.getZapCores()
-	logger := zap.New(zapcore.NewTee(cores...), zap.AddCaller())
+	logger = zap.New(zapcore.NewTee(cores...), zap.AddCaller())
 
 	if global.LOUIS_CONFIG.Zap.ShowLine {
 		logger = logger.WithOptions(zap.AddCaller())
 	}
-	global.LOGGER = logger
 }
 func (z *_zap) getEncoderCore(l zapcore.Level, level zap.LevelEnablerFunc) zapcore.Core {
 	writer, err := z.getWriteSyncer(l.String()) // 使用file-rotatelogs进行日志分割
