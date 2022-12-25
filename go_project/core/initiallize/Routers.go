@@ -13,7 +13,7 @@ func (r *Routers) DoRouters() *gin.Engine {
 	Router := gin.Default()
 
 	//Router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	global.LOUIS_LOG.Info("register swagger handler")
+	global.LOGGER.Info("register swagger handler")
 
 	//todo 大括号换行
 	PublicGroup := Router.Group("")

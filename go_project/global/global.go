@@ -22,7 +22,7 @@ var (
 	LOUIS_REDIS         *redis.Client
 	LOUIS_CONFIG        config.Server
 	LOUIS_VP            *viper.Viper
-	LOUIS_LOG           *zap.Logger
+	LOGGER              *zap.Logger
 	DEFAULT_CONFIG_TYPE string = "yaml"
 	BlackCache          cache.BlackCache
 	lock                sync.RWMutex

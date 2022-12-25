@@ -6,12 +6,14 @@ import (
 	"louis/core"
 	"louis/core/initiallize"
 	"louis/global"
+	logInit "louis/log/initiallize"
 )
 
 func main() {
 	// 初始化viper
 	global.LOUIS_VP = core.Viper()
 
+	global.LOGGER = logInit.ZapInit()
 	initiallize.OuterInit()
 
 	rout := initiallize.Routers{}
@@ -22,12 +24,13 @@ func main() {
 	case "mysql":
 		GormMysql()
 	}
+
 }
 
 func GormMysql() *gorm.DB {
 	m := global.LOUIS_CONFIG.Mysql
 	if m.Dbname == "" {
-		global.LOUIS_LOG.Info("数据库连接未找到")
+		global.LOGGER.Info("数据库连接未找到")
 		return nil
 	}
 
