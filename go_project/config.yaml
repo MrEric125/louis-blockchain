@@ -8,11 +8,13 @@ jwt:
   expires-time: 60s
   buffer-time: 20
   issuer: louis
+#  日志输出配置
 zap:
   level: debug
-  director: .out
+  director: .log
   log-in-console: true
   show-line: true
+#  mysql 配置
 mysql:
   db-name: louis_coub
   path: localhost
