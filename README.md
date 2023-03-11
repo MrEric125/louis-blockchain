@@ -19,5 +19,22 @@
 7. OpenZeppelin
    https://github.com/OpenZeppelin
 8. 预言机 Oracle
+
+9. solidity 中文文档
+https://solidity-cn.readthedocs.io/zh/develop/
+https://www.zhihu.com/question/266048727
+
+
+10. 通过solidity 能够开发什么软件
+dapp 
+
+什么是智能合约：
+ 智能合约是仅在满足特定条件时，才在区块链上部署和执行的功能，无需任何第三方参与
+
+
+
+
+
+
    
 
