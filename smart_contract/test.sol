@@ -1,5 +1,4 @@
 
-pragma solidity ^0.8.0;
 
 
 contract test{
@@ -23,4 +22,5 @@ contract test{
     function pretest(uint256 param) public pure returns(uint256){
          return param;
     }
+    
 }
