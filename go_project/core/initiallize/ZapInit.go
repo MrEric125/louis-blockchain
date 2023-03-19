@@ -2,14 +2,15 @@ package initiallize
 
 import (
 	"fmt"
-	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 	"louis/global"
 	"louis/utils"
 	"os"
 	"path"
 	"time"
+
+	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 var ZapObj = new(_zap)
@@ -18,6 +19,7 @@ var logger *zap.SugaredLogger
 
 type _zap struct{}
 
+// init for zap logging
 func ZapInit() {
 
 	ok, _ := utils.PathExists(global.LOUIS_CONFIG.Zap.Director)

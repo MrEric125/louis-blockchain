@@ -5,10 +5,7 @@ pragma solidity ^0.8.0;
 
 /// @title  委托投票
 contract Ballot {
-
-
     
-
     struct Voter {
 
         uint weight;// 计票权重
@@ -101,15 +98,6 @@ contract Ballot {
         // 如果 `proposal` 超过了数组的范围，则会自动抛出异常，并恢复所有的改动
         proposals[proposal].voteCount+=sender.weight;
 
-
-
     }
-
-
-
-
-
-
-
 
 }
