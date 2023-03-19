@@ -37,3 +37,6 @@ npm
 ```
 npm install --save-dev hardhat
 ```
+
+使用hardhat 开发测试token
+

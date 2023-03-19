@@ -21,3 +21,4 @@ console.log(
     lockedAmount
   )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
 );
+
