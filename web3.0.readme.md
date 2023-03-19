@@ -40,3 +40,4 @@ npm install --save-dev hardhat
 
 使用hardhat 开发测试token
 
+目前使用node js 执行命令会报 `You are using a version of Node.js that is not supported, and it may work incorrectly, ` 其实没问题， 

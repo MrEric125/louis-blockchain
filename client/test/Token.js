@@ -5,7 +5,7 @@ import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs.js";
 import { expect } from "chai";
 
-const {ethers }=require("hardhat");
+// const {ethers }=require("hardhat");
 
 describe("Token", function () {
   let Token ,token ,owner,address,secret 
