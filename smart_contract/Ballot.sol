@@ -1,13 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
-// 表示不低于0.8.0的版本编译，但是不高于0.9.0
-pragma solidity ^0.8.0;
+// 表示不低于0.7.0的版本编译，但是不高于0.9.0
+pragma solidity >=0.7.0 <0.9.0;
 
 
 /// @title  委托投票
 contract Ballot {
-
-
-    
 
     struct Voter {
 
@@ -100,16 +97,21 @@ contract Ballot {
         sender.vote=proposal;
         // 如果 `proposal` 超过了数组的范围，则会自动抛出异常，并恢复所有的改动
         proposals[proposal].voteCount+=sender.weight;
-
-
-
     }
 
+    function winningProposal() view public returns (uint winningProposal_) {
+        uint winningVoteCount=0;
 
+        for (uint256 index = 0; index < proposals.length; index++) {
+            if(proposals[index].voteCount>winningVoteCount){
+                winningVoteCount=proposals[index].voteCount;
+                winningProposal_=index;
+            }    
+        }
+        
+    }
 
-
-
-
-
-
+    function winnerName() view public returns (bytes32 winnerName_) {
+        winnerName_=proposals[winningProposal()].name;
+    }
 }
