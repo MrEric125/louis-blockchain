@@ -6,6 +6,7 @@ pragma solidity >=0.7.0 <0.9.0;
 /// @title  委托投票
 contract Ballot {
 
+    
     struct Voter {
 
         uint weight;// 计票权重
@@ -87,7 +88,7 @@ contract Ballot {
 
     }
 
-    function vote (uint proposal) public{
+    function vote(uint proposal) public{
         Voter storage sender=voters[msg.sender];
 
         require(!sender.voted,"Already voted");
@@ -114,4 +115,7 @@ contract Ballot {
     function winnerName() view public returns (bytes32 winnerName_) {
         winnerName_=proposals[winningProposal()].name;
     }
+
+    
+
 }

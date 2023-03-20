@@ -19,4 +19,16 @@ const App=()=> {
   )
 }
 
+var Web3=require('web3')
+
+
+
+var web3=new Web3(Web3.givenProvider|| "ws://localhost:8545")
+
+// 修改provier
+web3.setProvider(new web3.providers.WebsocketProvider("ws://localhost:8545"))
+
+
+
+
 export default App

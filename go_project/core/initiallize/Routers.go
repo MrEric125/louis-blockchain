@@ -44,5 +44,8 @@ func (r *Routers) initServer(router *gin.Engine) {
 	if err != nil {
 		panic(err)
 	}
+	logger.Info("server run ok")
+	return
+	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 }
