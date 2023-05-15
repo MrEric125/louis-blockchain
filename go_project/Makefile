@@ -1,11 +1,11 @@
-PORJECT:=go_project
+# PORJECT:=go_project
 
-.PHONEY: build
+# .PHONEY: build
 
-build:
-#	CGO_ENABLE=0 go build
-build-linux:
+# build:
+# #	CGO_ENABLE=0 go build
+# build-linux:
 
-run:
+# run:
 
-stop:
+# stop:
