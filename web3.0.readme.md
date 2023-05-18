@@ -32,6 +32,7 @@ erc20 规范：
 
 
 ## 安装 hardhat;
+网址：https://hardhat.org/hardhat-runner/docs/getting-started#installation
 
 npm 
 ```

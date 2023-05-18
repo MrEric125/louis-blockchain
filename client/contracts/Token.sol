@@ -1,4 +1,5 @@
-
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.9;
 
 contract Token{
 
@@ -24,5 +25,8 @@ contract Token{
     }
     function balanceOf(address acount) external view  returns(uint) {
         return balances[acount];
+    }   
+    function calculateDayBetweenDates(BeginDate, EndDate) external returns{
+        
     }
 }
