@@ -2,14 +2,11 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
-	appsv1 "k8s.io/api/apps/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
-	"k8s.io/client-go/util/jsonpath"
-	"k8s.io/client-go/util/retry"
 	"os"
 )
 
@@ -99,23 +96,9 @@ func main() {
 				Port: {.spec.template.spec.containers[0].ports[0].containerPort}
 				Resources: {.spec.template.spec.containers[0].resources}
 				`
-	jsonPathObj := jsonpath.NewDecoder()
-	jsonPathObj.KnownTypes(appsv1.SchemeGroupVersion.WithKind("Deployment"), &appsv1.Deployment{})
-	jsonPathObj.KnownType(&v1.ObjectMeta{})
-	jsonPathObj.KnownType(&v1.ListMeta{})
-	jsonPathObj.AllowMissingKeys(true)
-
-	// 执行描述操作
-	err = retry.RetryOnConflict(retry.DefaultBackoff, func() error {
-		jsonPathObj.Reset()
-		err := jsonPathObj.Decode(deployment, jsonPathStr, &fmt.Print)
-		if err != nil {
-			return err
-		}
-		return nil
-	})
-	if err != nil {
-		panic(err.Error())
-	}
+	fmt.Print(jsonPathStr)
+	deploymentJSON, _ := json.Marshal(deployment)
+	fmt.Print("-------")
+	fmt.Println(string(deploymentJSON))
 
 }
