@@ -86,5 +86,6 @@ func title(url string) error {
 		resp.Body.Close()
 		return fmt.Errorf("%s has type %s,not text/html", url, ct)
 	}
+	return err
 
 }

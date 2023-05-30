@@ -29,9 +29,3 @@ func fib(n int) int {
 	}
 	return x
 }
-
-// 斐波那契数列
-func fib2(n int) {
-	R
-
-}

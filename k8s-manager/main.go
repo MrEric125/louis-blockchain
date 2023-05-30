@@ -4,10 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
-	"os"
 )
 
 func main() {
@@ -17,6 +18,10 @@ func main() {
 		kubeConfig = os.ExpandEnv("$HOME/.kube/config")
 	}
 	config, err := clientcmd.BuildConfigFromFlags("", kubeConfig)
+	if err != nil {
+		panic(err.Error())
+	}
+	fmt.Println("current context config:%s", config)
 	// 获取 客户端请求
 	clientSet, err := kubernetes.NewForConfig(config)
 	if err != nil {
@@ -93,6 +98,7 @@ func main() {
 			    Containers:
 				Name: {.spec.template.spec.containers[0].name}
 			    Image: {.spec.template.spec.containers[0].image}
+
 				Port: {.spec.template.spec.containers[0].ports[0].containerPort}
 				Resources: {.spec.template.spec.containers[0].resources}
 				`
@@ -101,4 +107,36 @@ func main() {
 	fmt.Print("-------")
 	fmt.Println(string(deploymentJSON))
 
+	go abc()
+
+}
+
+func abc() {
+
+}
+
+type Pool struct {
+	work chan func()
+	sem  chan struct{}
+}
+
+func New(size int) *Pool {
+	return &Pool{
+		work: make(chan func()),
+		sem:  make(chan struct{}, size),
+	}
+}
+func (p *Pool) Schedule(task func()) {
+	select {
+	case p.work <- task:
+	case p.sem <- struct{}{}:
+		go p.worker(task)
+	}
+}
+func (p *Pool) worker(task func()) {
+	defer func() { <-p.sem }()
+	for {
+		task()
+		task = <-p.work
+	}
 }

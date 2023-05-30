@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"testing"
 )
 
 // Currency 是一个自定义的 int 类型
@@ -21,7 +22,7 @@ const (
 /**
 * 内置的 一些函数： make len cap new delete append
  */
-func main() {
+func TestCurrency(t *testing.T) {
 	symbol := [...]string{USD: "$", EUR: "€", GBP: "￡", RMB: "￥"}
 
 	fmt.Println(RMB, symbol[RMB]) // "3 ￥"
@@ -29,8 +30,6 @@ func main() {
 	months := [...]string{1: "January", 12: "December"}
 
 	Q2 := months[4:7]
-
-	sumer := months[5:8]
 
 	fmt.Println(Q2, len(Q2), cap(Q2))
 
