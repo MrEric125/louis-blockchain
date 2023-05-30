@@ -2,7 +2,13 @@
 <module type="WEB_MODULE" version="4">
   <component name="Go" enabled="true" />
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/client/artifacts" />
+      <excludeFolder url="file://$MODULE_DIR$/client/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/go_project/.log" />
+      <excludeFolder url="file://$MODULE_DIR$/k8s-manager/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/bin" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
