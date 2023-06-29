@@ -21,7 +21,8 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println("current context config:%s", config)
+	fmt.Printf("current context config:%s ;apiPath:%s", config.Host, config.APIPath)
+	fmt.Println()
 	// 获取 客户端请求
 	clientSet, err := kubernetes.NewForConfig(config)
 	if err != nil {
@@ -45,7 +46,7 @@ func main() {
 		fmt.Printf("  Cluster: %s\n", context.Cluster)
 	}
 
-	fmt.Println("current context:%s", contextConfig.CurrentContext)
+	fmt.Printf("current context:%s", contextConfig.CurrentContext)
 
 	namespaces, err := clientSet.CoreV1().Namespaces().List(context.Background(), metav1.ListOptions{})
 	// 获取当前上下文的Namespace
@@ -84,34 +85,9 @@ func main() {
 		panic(err.Error())
 	}
 
-	jsonPathStr := `Name: {.metadata.name}
-				Namespace: {.metadata.namespace}
-				Labels: {.metadata.labels}
-				Replicas: {.status.replicas}
-				Available: {.status.availableReplicas}
-				Updated: {.status.updatedReplicas}
-				Strategy: {.spec.strategy.type}
-				RollingUpdate: {.spec.strategy.rollingUpdate}
-				Pod Template:
-				Name: {.spec.template.metadata.name}
-				Labels: {.spec.template.metadata.labels}
-			    Containers:
-				Name: {.spec.template.spec.containers[0].name}
-			    Image: {.spec.template.spec.containers[0].image}
-
-				Port: {.spec.template.spec.containers[0].ports[0].containerPort}
-				Resources: {.spec.template.spec.containers[0].resources}
-				`
-	fmt.Print(jsonPathStr)
 	deploymentJSON, _ := json.Marshal(deployment)
 	fmt.Print("-------")
 	fmt.Println(string(deploymentJSON))
-
-	go abc()
-
-}
-
-func abc() {
 
 }
 
