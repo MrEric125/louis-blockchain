@@ -2,10 +2,11 @@ package initiallize
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"louis/global"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Routers struct {
@@ -24,7 +25,10 @@ func DoInitRouters() *gin.Engine {
 			context.JSON(http.StatusOK, "Ok")
 		})
 	}
-	//r.initServer(Router)
+	r := Routers{}
+
+	r.initServer(Router)
+
 	return Router
 
 }
