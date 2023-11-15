@@ -20,6 +20,15 @@ func TestForeach(t *testing.T) {
 	fmt.Println(medals)
 	fmt.Println(medals[1:3])
 
+	// 对应地址，以及对应值的获取
+	var age int = 10
+	fmt.Println("age 对应地址为：", &age)
+	fmt.Println("age 对应值为：", age)
+	var add *int = &age
+	fmt.Println("age 对应地址为：", &add)
+	fmt.Println("age 对应值为：", *add)
+
+
 }
 func fib(n int) int {
 	x, y := 0, 1
