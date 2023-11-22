@@ -16,9 +16,15 @@ const App=()=> {
       </div>
       <Services></Services>
       <Transactions></Transactions>
-
+      <h1>hello world</h1>
     </div>
   )
+}
+
+function MyButton(){
+  return (<MyButton>
+    I'm react button 
+  </MyButton>)
 }
 
 export default App
