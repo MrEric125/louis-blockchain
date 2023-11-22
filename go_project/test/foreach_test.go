@@ -28,7 +28,6 @@ func TestForeach(t *testing.T) {
 	fmt.Println("age 对应地址为：", &add)
 	fmt.Println("age 对应值为：", *add)
 
-
 }
 func fib(n int) int {
 	x, y := 0, 1
