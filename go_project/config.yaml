@@ -16,11 +16,11 @@ zap:
   show-line: true
 #  mysql 配置
 mysql:
-  db-name: louis_coub
+  db-name: louis_coube
   path: localhost
   port: 3306
   config:
   username: root
-  password: "!QAZ2wsx"
+  password: "Root"
   prefix:
   engine: InnoDB
