@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.7.0 <0.9.0;
 
+import "hardhat/cosole.sol";
 
 contract SimpleAuction{
     address public beneficiary;

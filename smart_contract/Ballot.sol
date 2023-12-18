@@ -6,7 +6,7 @@ pragma solidity >=0.7.0 <0.9.0;
 /// @title  委托投票
 contract Ballot {
 
-    
+    // 声明一个新的符合类型
     struct Voter {
 
         uint weight;// 计票权重
