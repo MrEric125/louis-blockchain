@@ -21,7 +21,7 @@
 						"type": "string"
 					}
 				],
-				"stateMutability": "pure",
+				"stateMutability": "payable",
 				"type": "function"
 			}
 		],
@@ -53,11 +53,11 @@
 	},
 	"sources": {
 		"chapter-string/SoliditytTest.sol": {
-			"keccak256": "0xe55899758ae5d8e23c4c70dcdda948f96a16bee9c22d583e2c53c3a41feb82d6",
+			"keccak256": "0x59b764a5cf38193af520e98b59b84a3dd15a14a28c075aa70f7e6ab7072c4da2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6a4bd47c082301a94ee465265f7d0d18e14991ee1b90a6b39dcecb4e080e2441",
-				"dweb:/ipfs/Qmc6JruRkQWmbEfXV3VkT9dj4FP5aDrfBnKiUtbHsVRXiL"
+				"bzz-raw://feac60ebc292db1cf5a9aca8e6ed0223e236101d02681d005bec16e809a44cc3",
+				"dweb:/ipfs/QmXeQ3xjpPh3YfzcieX4iE6P4kha8nEecWmJ74zge1nE82"
 			]
 		}
 	},

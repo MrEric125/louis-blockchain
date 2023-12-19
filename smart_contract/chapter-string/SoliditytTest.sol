@@ -12,9 +12,7 @@ contract SolidityTest{
      * 在 Solidity 中，我们可以轻松地将字符串文字分配给 byte32 类型变量 
      */
     bytes32 data3="test3";
-
-
-    function c(uint _i) public pure returns (string memory) {
+    function c(uint _i) public payable   returns (string memory) {
         if (_i == 0) {
          return "0";
         }
@@ -25,23 +23,22 @@ contract SolidityTest{
             len++;
             j /= 10;
         }
+        return "0";
         /* 
          *
          * Note: The called function should be payable if you send value and 
-         * the value you send should be less than your current balance.
-         * Debug the transaction to get more information.
+         the value you send should be less than your current balance.
+          Debug the transaction to get more information.
          *
          */
-        bytes memory bstr = new bytes(len);
-        uint k = len - 1;
+    //     bytes memory bstr = new bytes(len);
+    //     uint k = len - 1;
       
-        while (_i != 0) {
-            bstr[k--] = bytes1(uint8(48 + _i % 10));
-            _i /= 10;
-        }
-      return string(bstr);
+    //     while (_i != 0) {
+    //         bstr[k--] = bytes1(uint8(48 + _i % 10));
+    //         _i /= 10;
+    //     }
+    //   return string(bstr);
 
     }
-
-   
 }
