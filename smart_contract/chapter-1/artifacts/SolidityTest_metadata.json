@@ -33,7 +33,20 @@
 						"type": "string"
 					}
 				],
-				"stateMutability": "pure",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getResult2",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -57,7 +70,11 @@
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"getResult2()": {
+					"notice": "The transaction has been reverted to the initial state. Note: The called function should be payable if you send value and the value you send should be less than your current balance. Debug the transaction to get more information."
+				}
+			},
 			"version": 1
 		}
 	},
@@ -78,11 +95,11 @@
 	},
 	"sources": {
 		"chapter-1/SolidityTest.sol": {
-			"keccak256": "0xa018ab1930109773e99fa7e57c13ba0c55e0d4323c0ad0c7c9bdf9bb4d6313cf",
+			"keccak256": "0x9b882de370f85484a6f3e546105bffba130115cb300c1e1e3a8c7ddd5aa78ef1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6f604503e8935b0cc62e127688f4f8b94bb109079a4ffc675bbb77d21f4058f6",
-				"dweb:/ipfs/QmNMTZKeonqzecBj7N9gLZLciynVETrDEy6K7uEVQ6BLUs"
+				"bzz-raw://d57f4f9d008083d52004ef4865c39407b0f38392d4bae0ee9e84153ce9f778c1",
+				"dweb:/ipfs/QmUSBFRH9wsTTjEPsLyX1HyRBDsQT3iPaRi1hb4AoScdad"
 			]
 		}
 	},

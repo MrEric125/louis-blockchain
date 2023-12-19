@@ -19,6 +19,19 @@ contract SolidityTest {
     constructor() {
 
     }
+
+    /**
+    * https://github.com/etherchina/solidity-doc-cn/blob/defb2004c8c5c080ab147af94b4d95334bbb6002/miscellaneous.rst#L347
+    * function: the basic syntax is shown here
+    * function function_name(parameter-list) scope returns ()
+    * scope 种类:
+            view:
+            pure: 
+            constant:
+            payable:
+            anonymous:
+            indexed:
+    */
     function getResult() public pure returns (string memory){
 
         uint a = 1; // local variable
@@ -46,15 +59,38 @@ contract SolidityTest {
         }
 
         return string(bstr);
+
     }
 
+    /**
+    * The transaction has been reverted to the initial state.
+    * Note: The called function should be payable if you send value and the value you send should be less than your current balance.
+    * Debug the transaction to get more information.
+    */
+    function getResult2() public pure  returns (string memory){
 
+        uint a = 1; // local variable
+        uint b = 2;
+        uint result = a + b;
+        return intToString(result); //access the state variable
+    }
+
+    function integerToString2(uint _i) internal pure 
+      returns (string memory) {
+      if (_i == 0) {
+         return "0";
+      }
+      uint j=0;
+      uint len;
+      for (j = _i; j != 0; j /= 10) {  //for loop example
+         len++;         
+      }
+      bytes memory bstr = new bytes(len);
+    //   uint k = len - 1;
+    //   while (_i != 0) {
+    //      bstr[k--] = bytes1(uint8(48 + _i % 10));
+    //      _i /= 10;
+    //   }
+      return string(bstr);//access local variable
+   }
 }
-
-// contract Caller {
-//     SolidityTest c = new SolidityTest();
-
-//     function f() public view returns (uint) {
-//         return c.storedData(); //external access
-//     }
-// }
