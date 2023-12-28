@@ -12,13 +12,13 @@ pragma solidity >=0.8.0;
 contract SolidityTest {
 
     // state variables
-    uint public storedData = 30;
-    uint public data = 30;
+    // uint public storedData = 30;
+    // uint public data = 30;
 
     // 状态变量的三种作用域: public Internal private
-    constructor() {
+    // constructor() {
 
-    }
+    // }
 
     /**
     * https://github.com/etherchina/solidity-doc-cn/blob/defb2004c8c5c080ab147af94b4d95334bbb6002/miscellaneous.rst#L347
@@ -35,7 +35,7 @@ contract SolidityTest {
     function getResult() public pure returns (string memory){
 
         uint a = 1; // local variable
-        uint b = 2;
+        uint b = 0;
         uint result = a + b;
         return intToString(result); //access the state variable
     }
@@ -71,8 +71,22 @@ contract SolidityTest {
 
         uint a = 1; // local variable
         uint b = 2;
-        uint result = a + b;
-        return intToString(result); //access the state variable
+        uint _i = a + b;
+
+        uint j=0;
+        uint len;
+        for (j = _i; j != 0; j /= 10) {  //for loop example
+            len++;         
+        }
+        bytes memory bstr = new bytes(len);
+        uint k = len - 1;
+        while (_i != 0) {
+            bstr[k--] = bytes1(uint8(48 + _i % 10));
+            _i /= 10;
+        }
+        return string(bstr);//access local variable
+
+        // return intToString(result); //access the state variable
     }
 
     function integerToString2(uint _i) internal pure 

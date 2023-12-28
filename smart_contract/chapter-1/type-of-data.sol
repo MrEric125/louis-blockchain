@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT 
 pragma solidity >0.8.0;
 
+import "./SolidityTest.sol";
+// 远程导入（https://github.com/）
 
 contract Hello {
     string public message = "Hello World!";
@@ -98,7 +100,7 @@ struct Book{
  * 局部变量：定义在特定函数中，仅仅在函数执行过程中生效
  * 全局变量：保存在全局命名空间，存在于EVM虚拟机中，不用定义，可以直接获取即可
         - msg.sender:表示当前调用方法时的发起人。合约的发起人可以是创建者，也可以是合约拥有者，**如何判断合约的拥有者？**
-        
+
         - msg.value
         - block.timestamp
         - block.number
