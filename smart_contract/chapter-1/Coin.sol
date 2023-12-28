@@ -4,6 +4,8 @@ pragma solidity ^0.8.19;
 contract Coin {
     uint storageData;
 
+    enum State {Created,Locked,Invalid}
+
     function set(uint x) public {
         storageData=x;
         
